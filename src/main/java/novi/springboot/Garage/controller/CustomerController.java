@@ -2,6 +2,7 @@ package novi.springboot.Garage.controller;
 
 import novi.springboot.Garage.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,8 +20,8 @@ public class CustomerController {
 
 
     @GetMapping("/customer")
-    public ResponseEntity<Object> getcustomer(@RequestParam(required = false) String name) {
-        return new ResponseEntity<>
+    public ResponseEntity<Object> getCustomers() {
+        return new ResponseEntity<>(customerService.getAllCustomers(), HttpStatus.OK);
     }
 
 }
