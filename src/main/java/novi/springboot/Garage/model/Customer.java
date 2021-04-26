@@ -19,6 +19,10 @@ public class Customer{
     @Column(length = 20)
     private String telefoonnummer;
 
+    //constructor
+    public Customer(){
+    }
+
     public Customer(long id, String voornaam, String achternaam, String telefoonnummer) {
         this.id = id;
         this.voornaam = voornaam;
