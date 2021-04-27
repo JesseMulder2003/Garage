@@ -1,7 +1,5 @@
 package novi.springboot.Garage.controller;
 
-import novi.springboot.Garage.Repository.CustomerRepository;
-import novi.springboot.Garage.model.Customer;
 import novi.springboot.Garage.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,8 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
 public class CustomerController {
 
@@ -20,7 +16,7 @@ public class CustomerController {
     CustomerService customerService;
 
     @GetMapping("/")
-    public String sayhello(){return "nu werkt het wel";}
+    public String sayhello(){return "De test is geslaagd!";}
 
 
     @GetMapping("/customer")
