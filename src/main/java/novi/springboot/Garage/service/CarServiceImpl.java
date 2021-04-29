@@ -3,9 +3,11 @@ package novi.springboot.Garage.service;
 import novi.springboot.Garage.Repository.CarRepository;
 import novi.springboot.Garage.model.Car;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CarServiceImpl implements CarService {
 
     @Autowired
@@ -19,7 +21,7 @@ public class CarServiceImpl implements CarService {
         if (brand == null || brand.isEmpty())
             return carRepository.findAll();
         else {
-            return carRepository.findByBrandIs(brand);
+            return carRepository.findByMerkIs(brand);
         }
     }
 }
