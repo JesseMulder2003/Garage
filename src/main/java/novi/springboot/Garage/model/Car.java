@@ -14,21 +14,27 @@ public class Car {
     @Column(length = 80)
     private String merk;
 
+    @Column(length = 80)
+    private String autotype;
+
     @Column(length = 4)
     private String bouwjaar;
 
     @Column(length = 80)
     private String kmStand;
 
+
     //constructor
     public Car(){
     }
 
-    public Car(long id, String merk, String bouwjaar, String kmStand) {
+    public Car(long id, String merk, String autotype, String bouwjaar, String kmStand) {
         this.id = id;
         this.merk = merk;
+        this.autotype = autotype;
         this.bouwjaar = bouwjaar;
         this.kmStand = kmStand;
+
     }
 
     public long getId() { return id;}
@@ -46,4 +52,8 @@ public class Car {
     public String getKmStand() { return kmStand; }
 
     public void setKmStand(String kmStand) { this.kmStand = kmStand; }
+
+    public String getAutotype() { return autotype; }
+
+    public void setAutotype(String autotype) { this.autotype = autotype; }
 }
