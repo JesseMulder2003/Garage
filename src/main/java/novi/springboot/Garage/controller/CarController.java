@@ -38,4 +38,10 @@ public class CarController {
 
         return ResponseEntity.created(location).build();
     }
+
+    @DeleteMapping(value = "/car/{id}")
+    public ResponseEntity<Object> deleteStudent(@PathVariable("id") Integer id) {
+        carService.deleteCar(id);
+        return new ResponseEntity<>("Record deleted", HttpStatus.NO_CONTENT);
+    }
 }

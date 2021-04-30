@@ -1,6 +1,7 @@
 package novi.springboot.Garage.service;
 
 import novi.springboot.Garage.Repository.CarRepository;
+import novi.springboot.Garage.exception.RecordNotFoundException;
 import novi.springboot.Garage.model.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,5 +30,15 @@ public class CarServiceImpl implements CarService {
     public long addCar(Car car) {
         Car newCar = carRepository.save(car);
         return newCar.getId();
+    }
+
+    @Override
+    public void deleteCar(long id) {
+        if (carRepository.existsById(id)) {
+            carRepository.deleteById(id);
+        }
+        else {
+            throw new RecordNotFoundException();
+        }
     }
 }
