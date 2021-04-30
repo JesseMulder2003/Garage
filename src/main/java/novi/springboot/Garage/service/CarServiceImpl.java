@@ -24,4 +24,10 @@ public class CarServiceImpl implements CarService {
             return carRepository.findByMerkIs(brand);
         }
     }
+
+    @Override
+    public long addCar(Car car) {
+        Car newCar = carRepository.save(car);
+        return newCar.getId();
+    }
 }

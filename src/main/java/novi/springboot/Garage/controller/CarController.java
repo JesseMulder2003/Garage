@@ -1,5 +1,6 @@
 package novi.springboot.Garage.controller;
 
+import novi.springboot.Garage.model.Car;
 import novi.springboot.Garage.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,5 +26,16 @@ public class CarController {
         return new ResponseEntity<>(carService.getCarByBrand(brand), HttpStatus.OK);
     }
 
+    @PostMapping(value = "/car")
+    public ResponseEntity<Object> addCar(@RequestBody Car car) {
 
+        long newId = carService.addCar(car);
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(newId)
+                .toUri();
+
+        return ResponseEntity.created(location).build();
+    }
 }
