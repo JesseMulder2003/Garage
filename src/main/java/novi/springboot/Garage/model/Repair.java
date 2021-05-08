@@ -8,10 +8,12 @@ import javax.persistence.Table;
 //@Table(name = "Repair")
 public class Repair {
 
-    //lijst met onderdelen
-    //prijs van de onderdelen
+
     //status akkoord
     //id
     //status van reparatie(wanneer voltooid apk goedgekeurd)
 
 }
+//appart model
+//lijst met onderdelen
+//prijs van de onderdelen
