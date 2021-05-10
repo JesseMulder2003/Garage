@@ -1,7 +1,10 @@
 package novi.springboot.Garage.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Car")
@@ -23,6 +26,9 @@ public class Car {
     @Column(length = 80)
     private String kmStand;
 
+    @OneToMany(mappedBy = "car")
+    @JsonIgnoreProperties("car")
+    List<CustomerCar> customer_Car;
 
     //constructor
     public Car(){
@@ -56,4 +62,12 @@ public class Car {
     public String getAutotype() { return autotype; }
 
     public void setAutotype(String autotype) { this.autotype = autotype; }
+
+    public List<CustomerCar> getCustomer_Car() {
+        return customer_Car;
+    }
+
+    public void setCustomer_Car(List<CustomerCar> customer_Car) {
+        this.customer_Car = customer_Car;
+    }
 }
