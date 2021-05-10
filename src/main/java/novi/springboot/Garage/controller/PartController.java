@@ -15,4 +15,6 @@ public class PartController {
 
     @GetMapping("/parts")
     public ResponseEntity<Object> getAllParts() { return new ResponseEntity<>(partService.getAllParts(), HttpStatus.OK); }
+
+
 }
