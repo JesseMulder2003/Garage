@@ -17,9 +17,6 @@ public class CustomerController {
     @Autowired
     CustomerService customerService;
 
-    @GetMapping("/")
-    public String sayhello(){return "De test is geslaagd!";}
-
 
     @GetMapping("/customer")
     public ResponseEntity<Object> getAllCustomers() {
