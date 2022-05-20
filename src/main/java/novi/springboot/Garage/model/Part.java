@@ -28,8 +28,7 @@ public class Part {
 
     }
 
-    public Part(long id, String onderdeel, String prijs, String reparatieduur) {
-        this.id = id;
+    public Part(String onderdeel, String prijs, String reparatieduur) {
         this.onderdeel = onderdeel;
         this.prijs = prijs;
         this.reparatieduur = reparatieduur;

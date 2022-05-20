@@ -41,4 +41,12 @@ public class CarServiceImpl implements CarService {
             throw new RecordNotFoundException();
         }
     }
+
+    public List<Car> getCarsByCustomer(Long id) {
+        return carRepository.findByCustomerId(id);
+    }
+
+    public Optional<Car> getCarById(Long id) {
+        return carRepository.findById(id);
+    }
 }

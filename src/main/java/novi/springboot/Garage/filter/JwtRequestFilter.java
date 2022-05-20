@@ -1,6 +1,6 @@
 package novi.springboot.Garage.filter;
 
-import novi.springboot.Garage.config.CustomUserDetailsService;
+import novi.springboot.Garage.config.UserDetailsServiceImpl;
 import novi.springboot.Garage.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
