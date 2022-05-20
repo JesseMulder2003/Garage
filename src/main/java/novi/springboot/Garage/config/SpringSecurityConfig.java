@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -15,17 +16,18 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    public CustomUserDetailsService customUserDetailsService;
+    public UserDetailsServiceImpl customUserDetailsService;
 
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserDetailsService);
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Override
@@ -48,17 +50,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .and()
                 .authorizeRequests()
-//                .antMatchers("/cars/**").hasRole("ADMIN")
-//                .antMatchers("/users/**").hasRole("ADMIN")
-//                .antMatchers("/parts/**").hasRole("USER")
-//                .antMatchers("/v1/students/**").hasRole("USER")
-//                .antMatchers(HttpMethod.GET, "/users/**").hasRole("USER") // per user authorization in UserService
-//                .antMatchers(HttpMethod.GET,"/authenticated/**").authenticated()
-
-                .anyRequest().permitAll()
+                .antMatchers("/cars/**").hasAnyRole("MANAGER", "MECHANIC")
+                .antMatchers("/customer").hasAnyRole("CUSTOMER", "MANAGER", "MECHANIC")
+                .antMatchers("/parts/**").hasAnyRole("CUSTOMER", "MANAGER", "MECHANIC")
+                .antMatchers("/accounts").hasRole("MANAGER")
+                .anyRequest()
+                .authenticated()
                 .and()
-                .csrf().disable()
-                .formLogin().disable();
+                .csrf().disable();
 
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }

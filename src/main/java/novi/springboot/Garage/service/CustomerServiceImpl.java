@@ -1,28 +1,31 @@
 package novi.springboot.Garage.service;
 
-import novi.springboot.Garage.Repository.CustomerRepository;
+import novi.springboot.Garage.Repository.AccountRepository;
 import novi.springboot.Garage.exception.RecordNotFoundException;
-import novi.springboot.Garage.model.Customer;
+import novi.springboot.Garage.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
-    CustomerRepository customerRepository;
+    AccountRepository customerRepository;
 
     @Override
-    public List<Customer> getAllCustomers() {
+    public List<Account> getAllCustomers() {
+        List<Account> allAccounts = customerRepository.findAll();
+        allAccounts.removeIf(account -> !account.getRole().equals("CUSTOMER"));
 
-        return customerRepository.findAll();
+        return allAccounts;
     }
 
     @Override
-    public long addCustomer(Customer customer) {
-        Customer newCustomer = customerRepository.save(customer);
+    public long addCustomer(Account customer) {
+        Account newCustomer = customerRepository.save(customer);
         return newCustomer.getId();
     }
 
@@ -34,6 +37,11 @@ public class CustomerServiceImpl implements CustomerService {
         else {
             throw new RecordNotFoundException();
         }
+    }
+
+    @Override
+    public Optional<Account> getCustomerAccount(String email) {
+        return customerRepository.findAccountByEmail(email);
     }
 }
 

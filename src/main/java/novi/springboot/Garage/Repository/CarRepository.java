@@ -11,4 +11,6 @@ import java.util.Optional;
 public interface CarRepository extends JpaRepository<Car, Long> {
 
     List<Car> findByMerkIs(String brand);
+
+    List<Car> findByCustomerId(long id);
 }

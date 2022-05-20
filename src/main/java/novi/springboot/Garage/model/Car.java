@@ -26,16 +26,15 @@ public class Car {
     @Column(length = 80)
     private String kmStand;
 
-    @OneToMany(mappedBy = "car")
-    @JsonIgnoreProperties("car")
-    List<CustomerCar> customer_Car;
+    @Column
+    private Long customerId;
+
 
     //constructor
-    public Car(){
+    public Car() {
     }
 
-    public Car(long id, String merk, String autotype, String bouwjaar, String kmStand) {
-        this.id = id;
+    public Car(String merk, String autotype, String bouwjaar, String kmStand) {
         this.merk = merk;
         this.autotype = autotype;
         this.bouwjaar = bouwjaar;
@@ -43,31 +42,63 @@ public class Car {
 
     }
 
-    public long getId() { return id;}
+    public String toString() {
+        return "Id: " + id + "\n" +
+                "Merk: " + merk + "\n" +
+                "Type: " + autotype + "\n" +
+                "Bouwjaar: " + bouwjaar + "\n" +
+                "Kilometerstand: " + kmStand + "\n" +
+                "Customer Id: " + customerId;
 
-    public void setId(long id) { this.id = id; }
-
-    public String getMerk() { return merk; }
-
-    public void setMerk(String merk) { this.merk = merk; }
-
-    public String getBouwjaar() { return bouwjaar; }
-
-    public void setBouwjaar(String bouwjaar) { this.bouwjaar = bouwjaar; }
-
-    public String getKmStand() { return kmStand; }
-
-    public void setKmStand(String kmStand) { this.kmStand = kmStand; }
-
-    public String getAutotype() { return autotype; }
-
-    public void setAutotype(String autotype) { this.autotype = autotype; }
-
-    public List<CustomerCar> getCustomer_Car() {
-        return customer_Car;
     }
 
-    public void setCustomer_Car(List<CustomerCar> customer_Car) {
-        this.customer_Car = customer_Car;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getMerk() {
+        return merk;
+    }
+
+    public void setMerk(String merk) {
+        this.merk = merk;
+    }
+
+    public String getBouwjaar() {
+        return bouwjaar;
+    }
+
+    public void setBouwjaar(String bouwjaar) {
+        this.bouwjaar = bouwjaar;
+    }
+
+    public String getKmStand() {
+        return kmStand;
+    }
+
+    public void setKmStand(String kmStand) {
+        this.kmStand = kmStand;
+    }
+
+    public String getAutotype() {
+        return autotype;
+    }
+
+    public void setAutotype(String autotype) {
+        this.autotype = autotype;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 }
+
+
