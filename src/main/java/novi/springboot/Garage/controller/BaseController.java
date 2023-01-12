@@ -7,5 +7,5 @@ import org.springframework.web.bind.annotation.RestController;
 public class BaseController {
 
     @GetMapping("/")
-    public String sayhello(){return "Welkom bij de garage API!";}
+    public String sayhello(){return "Welkom bij de garage API! Geef een geldig endpoint op!";}
 }
