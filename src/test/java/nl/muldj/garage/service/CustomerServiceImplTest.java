@@ -12,7 +12,7 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @SpringBootTest
-public class CustomerService {
+public class CustomerServiceImplTest {
 
     @Autowired
     private CustomerServiceImpl customerService;
