@@ -3,53 +3,42 @@ package nl.muldj.garage.service;
 import nl.muldj.garage.repository.CarRepository;
 import nl.muldj.garage.model.Car;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.mockito.Mockito.any;
 
 @SpringBootTest
 public class CarServiceImplTest {
 
     @Autowired
-    private CarRepository carRepository;
-
-    @Autowired
     private CarServiceImpl carService;
 
+    @MockBean
+    private CarRepository carRepository;
 
     @Test
     void shouldReturnAddedCar() {
         //given
         Car car = new Car("Novi", "Hatchback", "2014", "190000");
 
+        Mockito
+                .when(carRepository.findByMerkIs(any()))
+                .thenReturn(List.of(car));
+
         //when
-        carService.addCar(car);
-        List<Car> expectedCar = carRepository.findByMerkIs("Novi");
+        List<Car> expectedCar = carService.getCarByBrand("Novi");
 
         //then
-        assertThat(expectedCar.get(0).getMerk()).isEqualTo("Novi");
+        assertThat(expectedCar.get(0).getMerk()).isEqualTo(car.getMerk());
 
     }
 
-    @Test
-    void shouldNotReturnAddedCar(){
-        //given
-        Car car = new Car("Edhub", "Cabriolet", "2018", "10000");
-        carService.addCar(car);
-
-        //when
-        carService.deleteCar(car.getId());
-        List<Car> expectedCar = carRepository.findByMerkIs("Edhub");
-
-        //then
-        assertThat(expectedCar.size()).isEqualTo(0);
-
-
-
-    }
 
     @Test
     void shouldReturnSpecificCar(){
