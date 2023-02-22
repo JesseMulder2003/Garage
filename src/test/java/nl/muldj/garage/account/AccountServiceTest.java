@@ -16,7 +16,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.any;
 
 @SpringBootTest
-public class AccountService {
+public class AccountServiceTest {
 
     @Autowired
     private AccountServiceImpl accountService;
