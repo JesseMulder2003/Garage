@@ -1,4 +1,4 @@
-package nl.muldj.garage.account;
+package nl.muldj.garage.service;
 
 import nl.muldj.garage.repository.AccountRepository;
 import nl.muldj.garage.model.Account;

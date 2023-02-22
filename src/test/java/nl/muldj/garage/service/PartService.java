@@ -1,4 +1,4 @@
-package nl.muldj.garage.part;
+package nl.muldj.garage.service;
 
 import nl.muldj.garage.repository.PartRepository;
 import nl.muldj.garage.model.Part;
